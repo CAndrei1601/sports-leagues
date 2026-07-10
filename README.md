@@ -65,7 +65,7 @@ src/
 
 ## Known constraint: the free API tier
 
-The public key `3` at `all_leagues.php` currently returns only **10 leagues (all Soccer, all with a `null` alternate name)**. That's a limitation of the free API tier, not the app — the UI is fully data-driven, so with a richer dataset the sport dropdown would populate with multiple sports and alternate names would render automatically. The badge lookup (`search_all_seasons.php`) returns full data and is unaffected.
+The public key `3` at `all_leagues.php` returns only a small handful of leagues (currently all Soccer, all with a `null` alternate name), and the exact set varies over time. That's a limitation of the free API tier, not the app — the UI is fully data-driven, so with a richer dataset the sport dropdown would populate with multiple sports and alternate names would render automatically. The badge lookup (`search_all_seasons.php`) returns full data and is unaffected.
 
 ## AI tools & workflow
 
