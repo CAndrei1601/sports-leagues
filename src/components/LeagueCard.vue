@@ -59,8 +59,6 @@ const { badgeUrl, isOpen, pending, error, toggle } = useBadge(props.league.idLea
   border: 1px solid $color-border;
   border-radius: $radius-lg;
   padding: $space-md;
-  // Reserve the height of a 2-line title so closed cards line up evenly when
-  // sitting side by side. Open cards already exceed this, so it's a no-op there.
   min-height: 7rem;
   cursor: pointer;
   transition:
@@ -121,8 +119,6 @@ const { badgeUrl, isOpen, pending, error, toggle } = useBadge(props.league.idLea
     font-size: 0.78rem;
   }
 
-  // Smooth height reveal: the grid row animates 0fr -> 1fr (i.e. to the badge's
-  // real height, no magic max-height), while the inner wrapper clips overflow.
   &__reveal {
     display: grid;
     grid-template-rows: 1fr;

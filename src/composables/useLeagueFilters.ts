@@ -10,7 +10,6 @@ export function useLeagueFilters(leagues: Ref<League[]>) {
 
   const debouncedSearch = useDebounced(search, 250)
 
-  // Sport options derived from the data, so we never hardcode sport types.
   const sportOptions = computed(() => {
     const sports = new Set(leagues.value.map((l) => l.strSport).filter(Boolean))
     return [...sports].sort((a, b) => a.localeCompare(b))
