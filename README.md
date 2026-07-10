@@ -49,7 +49,7 @@ src/
 │   ├── SportFilter.vue      # v-model <select>
 │   ├── LeagueCard.vue       # one league + badge toggle
 │   ├── BadgeImage.vue       # badge with loading / missing / error states
-│   └── ui/StateMessage.vue  # reusable loading / error / empty block
+│   └── StateMessage.vue     # reusable loading / error / empty block
 ├── types/league.ts          # API model interfaces
 └── styles/                  # SCSS tokens + global reset
 ```

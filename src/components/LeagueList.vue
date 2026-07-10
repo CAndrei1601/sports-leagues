@@ -47,7 +47,7 @@ import { useLeagueFilters } from '@/composables/useLeagueFilters'
 import SearchBar from '@/components/SearchBar.vue'
 import SportFilter from '@/components/SportFilter.vue'
 import LeagueCard from '@/components/LeagueCard.vue'
-import StateMessage from '@/components/ui/StateMessage.vue'
+import StateMessage from '@/components/StateMessage.vue'
 
 const { data: leagues, pending, error, refresh } = useLeagues()
 const { search, selectedSport, sportOptions, filteredLeagues } = useLeagueFilters(leagues)
