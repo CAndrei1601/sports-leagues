@@ -76,6 +76,7 @@ const resultLabel = computed(() => {
   &__grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    align-items: start;
     gap: $space-md;
   }
 }

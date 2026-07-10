@@ -25,13 +25,21 @@
       {{ isOpen ? 'Hide badge' : 'Click to view badge' }}
     </span>
 
-    <BadgeImage
-      v-if="isOpen"
-      :url="badgeUrl"
-      :pending="pending"
-      :error="!!error"
-      :league-name="league.strLeague"
-    />
+    <Transition name="badge-reveal">
+      <div
+        v-if="isOpen"
+        class="league-card__reveal"
+      >
+        <div class="league-card__reveal-inner">
+          <BadgeImage
+            :url="badgeUrl"
+            :pending="pending"
+            :error="!!error"
+            :league-name="league.strLeague"
+          />
+        </div>
+      </div>
+    </Transition>
   </article>
 </template>
 
@@ -51,6 +59,10 @@ const { badgeUrl, isOpen, pending, error, toggle } = useBadge(props.league.idLea
   border: 1px solid $color-border;
   border-radius: $radius-lg;
   padding: $space-md;
+  // Reserve the height of a 2-line title so closed cards line up evenly when
+  // sitting side by side. Open cards already exceed this, so it's a no-op there.
+  min-height: 7rem;
+  cursor: pointer;
   transition:
     background 0.15s ease,
     border-color 0.15s ease,
@@ -107,6 +119,38 @@ const { badgeUrl, isOpen, pending, error, toggle } = useBadge(props.league.idLea
     margin-top: $space-sm;
     color: $color-text-muted;
     font-size: 0.78rem;
+  }
+
+  // Smooth height reveal: the grid row animates 0fr -> 1fr (i.e. to the badge's
+  // real height, no magic max-height), while the inner wrapper clips overflow.
+  &__reveal {
+    display: grid;
+    grid-template-rows: 1fr;
+  }
+
+  &__reveal-inner {
+    min-height: 0;
+    overflow: hidden;
+  }
+}
+
+.badge-reveal-enter-active,
+.badge-reveal-leave-active {
+  transition:
+    grid-template-rows 0.28s ease,
+    opacity 0.28s ease;
+}
+
+.badge-reveal-enter-from,
+.badge-reveal-leave-to {
+  grid-template-rows: 0fr;
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .badge-reveal-enter-active,
+  .badge-reveal-leave-active {
+    transition: none;
   }
 }
 </style>
