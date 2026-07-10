@@ -58,7 +58,7 @@ src/
 
 ## Design decisions
 
-- **Vite + Vue 3 over Nuxt.** The brief asks for an SPA, so a plain Vite build avoids the SSR/routing overhead of Nuxt. Instead of Nuxt's `useAsyncData`, `useLeagues` gives the same `{ data, pending, error, refresh }` ergonomics with full control over caching.
+- **Vite + Vue 3 SPA.** The brief asks for an SPA, so a plain Vite build keeps things lightweight — no SSR or routing overhead. Data loading lives in a small `useLeagues` composable that exposes `{ data, pending, error, refresh }`, giving full control over caching.
 - **No Pinia / no UI library.** State is small enough to live in composables; hand-written SCSS shows more of the frontend work the assignment evaluates.
 - **Sport options derived from data.** Robust to whatever the API returns rather than assuming a fixed sport list.
 - **`customRef`-free debounce.** A debounced *mirror* ref keeps the input instant while throttling the filter work — the input never lags behind the user's keystrokes.
