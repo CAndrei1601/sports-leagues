@@ -1,7 +1,3 @@
-<script setup lang="ts">
-import LeagueList from '@/components/LeagueList.vue'
-</script>
-
 <template>
   <div class="app">
     <header class="app__header">
@@ -16,6 +12,10 @@ import LeagueList from '@/components/LeagueList.vue'
     </main>
   </div>
 </template>
+
+<script setup lang="ts">
+import LeagueList from '@/components/LeagueList.vue'
+</script>
 
 <style scoped lang="scss">
 .app {

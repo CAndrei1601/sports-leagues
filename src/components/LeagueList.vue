@@ -1,21 +1,3 @@
-<script setup lang="ts">
-import { computed } from 'vue'
-import { useLeagues } from '@/composables/useLeagues'
-import { useLeagueFilters } from '@/composables/useLeagueFilters'
-import SearchBar from '@/components/SearchBar.vue'
-import SportFilter from '@/components/SportFilter.vue'
-import LeagueCard from '@/components/LeagueCard.vue'
-import StateMessage from '@/components/ui/StateMessage.vue'
-
-const { data: leagues, pending, error, refresh } = useLeagues()
-const { search, selectedSport, sportOptions, filteredLeagues } = useLeagueFilters(leagues)
-
-const resultLabel = computed(() => {
-  const n = filteredLeagues.value.length
-  return `${n} ${n === 1 ? 'league' : 'leagues'}`
-})
-</script>
-
 <template>
   <section class="league-list">
     <header class="league-list__controls">
@@ -58,6 +40,23 @@ const resultLabel = computed(() => {
     </template>
   </section>
 </template>
+<script setup lang="ts">
+import { computed } from 'vue'
+import { useLeagues } from '@/composables/useLeagues'
+import { useLeagueFilters } from '@/composables/useLeagueFilters'
+import SearchBar from '@/components/SearchBar.vue'
+import SportFilter from '@/components/SportFilter.vue'
+import LeagueCard from '@/components/LeagueCard.vue'
+import StateMessage from '@/components/ui/StateMessage.vue'
+
+const { data: leagues, pending, error, refresh } = useLeagues()
+const { search, selectedSport, sportOptions, filteredLeagues } = useLeagueFilters(leagues)
+
+const resultLabel = computed(() => {
+  const n = filteredLeagues.value.length
+  return `${n} ${n === 1 ? 'league' : 'leagues'}`
+})
+</script>
 
 <style scoped lang="scss">
 .league-list {

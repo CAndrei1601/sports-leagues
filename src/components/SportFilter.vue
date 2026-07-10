@@ -1,14 +1,3 @@
-<script setup lang="ts">
-import { ALL_SPORTS } from '@/composables/useLeagueFilters'
-
-defineProps<{
-  modelValue: string
-  options: string[]
-}>()
-
-defineEmits<{ 'update:modelValue': [value: string] }>()
-</script>
-
 <template>
   <div class="sport-filter">
     <select
@@ -28,6 +17,16 @@ defineEmits<{ 'update:modelValue': [value: string] }>()
     </select>
   </div>
 </template>
+<script setup lang="ts">
+import { ALL_SPORTS } from '@/composables/useLeagueFilters'
+
+defineProps<{
+  modelValue: string
+  options: string[]
+}>()
+
+defineEmits<{ 'update:modelValue': [value: string] }>()
+</script>
 
 <style scoped lang="scss">
 .sport-filter {

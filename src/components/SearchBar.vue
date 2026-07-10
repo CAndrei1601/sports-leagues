@@ -1,8 +1,3 @@
-<script setup lang="ts">
-defineProps<{ modelValue: string }>()
-defineEmits<{ 'update:modelValue': [value: string] }>()
-</script>
-
 <template>
   <div class="search-bar">
     <span
@@ -20,6 +15,10 @@ defineEmits<{ 'update:modelValue': [value: string] }>()
     />
   </div>
 </template>
+<script setup lang="ts">
+defineProps<{ modelValue: string }>()
+defineEmits<{ 'update:modelValue': [value: string] }>()
+</script>
 
 <style scoped lang="scss">
 .search-bar {
