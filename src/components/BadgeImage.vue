@@ -45,14 +45,17 @@ defineProps<{
 
 <style scoped lang="scss">
 .badge {
+  $media-height: 140px;
   margin-top: $space-md;
   padding-top: $space-md;
   border-top: 1px solid $color-border;
   display: flex;
+  align-items: center;
   justify-content: center;
+  min-height: calc(#{$media-height} + #{$space-md} + 1px);
 
   &__img {
-    max-height: 140px;
+    max-height: $media-height;
     object-fit: contain;
   }
 
@@ -60,7 +63,6 @@ defineProps<{
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 60px;
 
     &--text {
       margin: 0;
