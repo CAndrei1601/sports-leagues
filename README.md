@@ -13,6 +13,8 @@ npm run build    # type-check + production build
 npm run preview  # preview the production build
 npm run lint     # eslint (eslint-plugin-vue + typescript) with --fix
 npm run format   # prettier --write on src/
+npm test         # run unit tests once (Vitest)
+npm run test:watch  # unit tests in watch mode
 ```
 
 Formatting is owned by **Prettier** and code-quality by **ESLint** (`eslint-plugin-vue`), with `@vue/eslint-config-prettier` disabling any conflicting stylistic rules so the two never fight. Editor defaults (format-on-save + Prettier) are committed in `.vscode/settings.json` so formatting is deterministic across machines.
@@ -29,6 +31,7 @@ Requires Node 18+.
 - Loading / error (with retry) / empty states throughout.
 - Responsive layout: card grid collapses to a single column on mobile; controls stack.
 - Keyboard accessible cards (Enter / Space to toggle a badge).
+- Unit-tested filtering logic (Vitest) — see `src/composables/__tests__/useLeagueFilters.spec.ts`.
 
 ## Architecture
 
@@ -64,12 +67,19 @@ src/
 
 The public key `3` at `all_leagues.php` currently returns only **10 leagues (all Soccer, all with a `null` alternate name)**. That's a limitation of the free API tier, not the app — the UI is fully data-driven, so with a richer dataset the sport dropdown would populate with multiple sports and alternate names would render automatically. The badge lookup (`search_all_seasons.php`) returns full data and is unaffected.
 
-## AI tools used
+## AI tools & workflow
 
-- **Claude (Anthropic)** — used for project scaffolding, writing the composables/components, SCSS styling, and this README. All architecture and design decisions were reviewed and directed rather than accepted blindly; the app was verified running in a browser (list renders, filtering works, badges load and cache, no console errors).
+Built with **Claude (Anthropic)**, using a deliberate split by task:
 
-## Possible next steps (out of scope for the time-box)
+- **Opus 4.8** for the initial architecture and implementation plan — the higher-reasoning model, used where the design trade-offs matter most.
+- **Sonnet 5** for the actual code, styling, and this README — faster and more token-efficient for execution once the plan was set.
 
-- List virtualization (`vue-virtual-scroller`) if the API returned thousands of rows.
-- Unit tests (Vitest) on `useLeagueFilters` (filtering) and `leaguesApi` (caching).
-- Deep-linkable filters via URL query params.
+The work followed a bottom-up workflow, with each step reviewed and directed rather than accepted as-is:
+
+1. **Foundation** — scaffolded Vite + Vue 3 + TS + SCSS and set up ESLint/Prettier.
+2. **Data & logic** — the API layer with caching, then the composables (data loading, filtering, badges).
+3. **UI** — components and the responsive layout wired to that logic.
+4. **Polish & tests** — SFC cleanup, layout-shift fix, reveal animation, accessibility, and unit tests for the filtering logic.
+
+The app was verified running in a browser (list renders, filtering works, badges load and cache, no console errors).
+
